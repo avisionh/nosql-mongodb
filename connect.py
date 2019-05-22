@@ -12,6 +12,14 @@
 
 from pymongo import MongoClient
 from pprint import pprint
+import kaggle
+import os
+
+# check current working directory
+os.getcwd()
+
+# authenticate Kaggle API to download from there
+kaggle.api.authenticate()
 
 # 1. Connect to Mongo instance
 # desc: put connection code in a class so that it can be reused.
@@ -30,3 +38,10 @@ db = client.library
 cursor = db.authors.find({})
 for authors in cursor:
      pprint(authors)
+
+     
+# - Data Import - #
+# 5. Retrive data from Kaggle API and put in relevant folder
+kaggle.api.dataset_download_files('adithyarganesh/english-premier-league-player-data-20182019', 
+                                  path = 'C:/Users/a_vis/Documents/Data Science/Python/MongoDB/data', 
+                                  unzip=True)

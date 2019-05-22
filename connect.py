@@ -27,7 +27,7 @@ kaggle.api.authenticate()
 class Connect(object):
     @staticmethod    
     def get_connection():
-        return MongoClient("mongodb://user_readwrite:xtl0jDE3rtbH7H6J@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true")
+        return MongoClient("mongodb://user_readwrite:<password>@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true")
 
 # 2. Call the class just created.
 client = Connect.get_connection()

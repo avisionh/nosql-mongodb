@@ -13,6 +13,7 @@
 from pymongo import MongoClient
 from pprint import pprint
 import kaggle
+import json
 import os
 
 # check current working directory
@@ -41,7 +42,23 @@ for authors in cursor:
 
      
 # - Data Import - #
-# 5. Retrive data from Kaggle API and put in relevant folder
+# 1. Retrive data from Kaggle API and put in relevant folder
+path_folder = "C:/Users/a_vis/Documents/Data Science/Python/MongoDB/data"
 kaggle.api.dataset_download_files('adithyarganesh/english-premier-league-player-data-20182019', 
-                                  path = 'C:/Users/a_vis/Documents/Data Science/Python/MongoDB/data', 
+                                  path = path_folder, 
                                   unzip=True)
+
+# 2. Import EPL data into Python
+with open(path_folder + '/fpl_data_2018_2019.json') as data_football:
+    file_data = json.load(data_football)
+
+# 3. Create database and collection for new data
+db = client.football
+collection_england = db.england
+# 3. Import EPL data into Mongo
+collection_england.insert_one(file_data)
+
+# 4. Check it has been imported
+cursor = db.england.find({})
+for england in cursor:
+     pprint(england)

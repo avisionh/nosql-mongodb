@@ -1,0 +1,58 @@
+{
+	"course": [
+		{"courseTitle": "Computer Science",
+		 "level": [
+			{"levelOfStudy": "MSc",
+			 "mode": [
+					{"modeOfStudy": "Full-time","lengthOfStudy": 12},
+					{"modeOfStudy": "Part-time","lengthOfStudy": 24}
+			 ]
+			},
+		
+			{"levelOfStudy": "MSc with placement",
+			 "mode": [
+					{"modeOfStudy": "Full-time","lengthOfStudy": 24},
+					{"modeOfStudy": "Part-time","lengthOfStudy": 36}
+			 ]
+			},
+		
+			{"levelOfStudy": "PGDip",
+			 "mode": [
+					{"modeOfStudy": "Full-time","lengthOfStudy": 6},
+					{"modeOfStudy": "Part-time","lengthOfStudy": 18}
+			 ]
+			},
+		
+			{"levelOfStudy": "PGCert",
+			 "mode": [
+					{"modeOfStudy":"Full-time","lengthOfStudy":3},
+					{"modeOfStudy":"Part-time","lengthOfStudy":6}
+			 ]
+			}
+		 ],
+
+		 "academicDepartment": ["School of Engineering","Computing and Mathematics"],
+		 "accreditation": "BCS accredited MSc (CITPFL, partial CEng)",
+		 "courseDescription": "If your first degree is not in computing but you want to move into IT then our BCS accredited MSc in Computing Science is designed for you. Our course provides the basis for starting a career in computing and IT; teaching you the fundamentals of programming, hardware, networks and software engineering.\nThe course will enable you to develop a sound knowledge of computer software development for a range of problem areas, such as interactive websites, stand-alone applications and network systems. Because of its emphasis on software system construction and management, and data organisation, the qualification is applicable to a wide variety of fields concerned with using computers, as well as directly to the computer industry itself.",
+		 "teachingLocation": "Wheatley Campus",
+		 "dateStart": "September 2018 / September 2019",
+		 "linkApply": "https://www.brookes.ac.uk/courses/postgraduate/computing/?acc=section-four#section-four-marker"
+		},
+		
+		{"courseTitle": "Data Analytics",
+		 "levelOfStudy": "MSc",
+		  "mode": [
+			{"modeOfStudy": "Full-time", "lengthOfStudy": 12},
+			{"modeOfStudy": "Part-time", "lengthOfStudy": 60}
+		 ],
+		 "academicDepartment": ["School of Engineering", "Computing and Mathematics"],
+		 "courseDescription": "With recent developments in digital technology, society has entered the era of 'Big Data'. In the UK, Big Data has been announced as one of the Governments eight great technologies with priorities for funding and research. In June 2013, the Government published their \"information economy strategy\" outlining the pivotal role Big Data will play in rebuilding and strengthening the economy.\nHowever, the explosion and wealth of available data in a wide range of application domains gives rise to new challenges and opportunities in all areas. One major challenge is how to take advantage of the unprecedented scale of data in order to acquire further insights and knowledge for improving the quality of offered products and services.\nThis programme has been developed to run alongside the MSc in Data Analytics for Government, which was specified in conjunction with the Office for National Statistics. The MSc in Data Analytics is available to all students, and is not exclusive to any particular employment sector.",
+		 "teachinglocation": "Wheatley Campus",
+		 "dateStart": "September 2019 / September 2020",
+		 "linkApply": "https://www.brookes.ac.uk/courses/postgraduate/data-analytics/?acc=section-four#section-four-marker",
+		 "contactPhone": "+44 (0) 1865 485706",
+		 "contactLink": "tde-ecm-enquiry@brookes.ac.uk"
+		}
+	]
+}
+			

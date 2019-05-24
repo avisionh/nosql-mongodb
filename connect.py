@@ -120,9 +120,10 @@ db = client.countryDB
 # so can loop over for each dictionary in data_dicts
 # to import into mongoDB
 collections = ['capitals','continents','currencies','isothree','names','phonecodes']
-db_collections = ['db.' + element for element in collections]
+# No need for this anymore since using db[key] instead!
+# redundant: db_collections = ['db.' + element for element in collections]
 
-dict_collections = {k:v for k, v in zip(db_collections, data_dicts)}
+dict_collections = {k:v for k, v in zip(collections, data_dicts)}
 # 3. Import data into Mongo
 for key, value in dict_collections.items():
-    key.insert_one(value)
+    db[key].insert_one(value)

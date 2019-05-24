@@ -104,9 +104,9 @@ for _ in range(2):
 #        only exist in Python.
 #       when import into mongoDB, only then do we create
 #        the database and collections.
-db = client.countryDB
+db = client['countryDB']
 
-# follow naming-convention here:
+# follow collections naming-convention here:
 #   https://stackoverflow.com/questions/5916080/what-are-naming-conventions-for-mongodb
 
 # idea here is to use a loop to iterate the MongoDB import for each collection:
@@ -125,10 +125,23 @@ collections = ['capitals','continents','currencies','isothree','names','phonecod
 
 dict_collections = {k:v for k, v in zip(collections, data_dicts)}
 # 3. Import data into Mongo
-test = dict_collections['continents']
-test_dict = []
-for key, value in test.items():
-    test_dict.append({key: value})
-
+# Principle for how this nested loop works is
+#   i. initialise outer loop
+#   ii. for each key-value pair in dict_collections, e.g. 'capitals': {'AD':'Andorra la Vella', 'AE':'Abu Dhabi',...}
+#   iii. create an empty list object, list_dict,
+#        so we can append sub-key:sub-value objects in (wrapping them with '{}') e.g. [{'AD':'Andorra la Vella'},{'AE':'Abu Dhabi'},...].
+#       purpose of storing as list object is so can use `insert_many` function
+#        to import more than one document into mongoDB
+#   iv. intialise sub-loop
+#   v. for each (sub-)key-(sub-)value pair in the 'value' field of dict_collections, e.g. {'AD':'Andorra la Vella', 'AE':'Abu Dhabi',...}
+#   vi. wrap it within curly braces to turn each pair into a dict,
+#        and add as a new object within list_dict
+#       where aim was to get len(list_dict) = (sub-)key-(sub-)value pair in the 'value' field of dict_collections
+#   vii. back to outer loop
+#   viii. insert the list of dictionaries into mongoDB, e.g. insert_many(list_dict)
+#          under collection specified by the key field in data_collections
 for key, value in dict_collections.items():
-    db[key].insert_one(value)
+    list_dict = []
+    for key_sub, value_sub in value.items():
+        list_dict.append({key_sub: value_sub})
+    db[key].insert_many(list_dict)

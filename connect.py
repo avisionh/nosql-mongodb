@@ -125,5 +125,10 @@ collections = ['capitals','continents','currencies','isothree','names','phonecod
 
 dict_collections = {k:v for k, v in zip(collections, data_dicts)}
 # 3. Import data into Mongo
+test = dict_collections['continents']
+test_dict = []
+for key, value in test.items():
+    test_dict.append({key: value})
+
 for key, value in dict_collections.items():
     db[key].insert_one(value)

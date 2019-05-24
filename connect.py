@@ -57,8 +57,9 @@ with open(path_folder + '/fpl_data_2018_2019.json') as data_football:
 # for players e.g. player:"Rolando Aarons"
 # file_data_list = file_data.items()
     
-# 3. Create database and collection for new data
-db = client.football
+# 3. 'Create' database and collection for new data
+#   note: not actually creating these in mongoDB, but in Python are
+db = client.footballDB
 collection_england = db.england
 # 3. Import EPL data into Mongo
 collection_england.insert_one(file_data)
@@ -87,6 +88,7 @@ for file in os.listdir(path_folder):
         
 del dict; del file; del full_filename
 
+
 # 3. Remove 4th and 5th list items since they are already in database
 # note: use pop() instead of del() because want to return the dict item
 #        being removed and store in a list
@@ -97,3 +99,30 @@ data_remove = []
 for _ in range(2):
     data_remove.append(data_dicts.pop(3))
 
+# 4. Create database and collections for new data
+# note: these are not created in mongoDB yet,
+#        only exist in Python.
+#       when import into mongoDB, only then do we create
+#        the database and collections.
+db = client.countryDB
+
+# follow naming-convention here:
+#   https://stackoverflow.com/questions/5916080/what-are-naming-conventions-for-mongodb
+
+# idea here is to use a loop to iterate the MongoDB import for each collection:
+    # db.<name>.insert_many(data_dicts[i])
+# as have different variable names,
+# need object which can be called from to use as variable names. e.g. collection_<name>
+# is possible by using dictionary keys; not possible with lists
+
+# create two lists so can create a dictionary,
+# which is needed to use elements as variable names
+# so can loop over for each dictionary in data_dicts
+# to import into mongoDB
+collections = ['capitals','continents','currencies','isothree','names','phonecodes']
+db_collections = ['db.' + element for element in collections]
+
+dict_collections = {k:v for k, v in zip(db_collections, data_dicts)}
+# 3. Import data into Mongo
+for key, value in dict_collections.items():
+    key.insert_one(value)

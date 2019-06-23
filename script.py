@@ -19,15 +19,25 @@ import os
 # check current working directory
 os.getcwd()
 
+# pull in credentials
+path_folder = "C:/Users/a_vis/Documents/Data Science/Python/MongoDB"
+path_credentials = path_folder + "/user_credentials.json"
+with open(path_credentials) as json_file:
+        data_credentials = json.load(json_file)
+
 # authenticate Kaggle API to download from there
 kaggle.api.authenticate()
 
 # 1. Connect to Mongo instance
 # desc: put connection code in a class so that it can be reused.
+connect_user = data_credentials["user_group"]
+connect_password = data_credentials["user_password"]
+# obtain from Clusters -> Connect on MongoDB Atlas site
+connect_string = "mongodb://" + connect_user + ":" + connect_password + "@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true"
 class Connect(object):
     @staticmethod    
     def get_connection():
-        return MongoClient("mongodb://user_readwrite:JCFFK6mOFEd5nmTT@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true")
+        return MongoClient(connect_string)
 
 # 2. Call the class just created.
 client = Connect.get_connection()
@@ -43,7 +53,7 @@ for authors in cursor:
      
 # - Data Import - #
 # 1. Retrive data from Kaggle API and put in relevant folder
-path_folder = "C:/Users/a_vis/Documents/Data Science/Python/MongoDB/data"
+path_folder = path_folder + "/data"
 kaggle.api.dataset_download_files('adithyarganesh/english-premier-league-player-data-20182019', 
                                   path = path_folder, 
                                   unzip = True)

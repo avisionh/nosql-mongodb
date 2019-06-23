@@ -27,7 +27,7 @@ kaggle.api.authenticate()
 class Connect(object):
     @staticmethod    
     def get_connection():
-        return MongoClient("mongodb://user_readwrite:<pw>@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true")
+        return MongoClient("mongodb://user_readwrite:JCFFK6mOFEd5nmTT@cluster-open-shard-00-00-kzzlc.mongodb.net:27017,cluster-open-shard-00-01-kzzlc.mongodb.net:27017,cluster-open-shard-00-02-kzzlc.mongodb.net:27017/test?replicaSet=cluster-open-shard-0&authSource=admin&ssl=true")
 
 # 2. Call the class just created.
 client = Connect.get_connection()
@@ -145,3 +145,11 @@ for key, value in dict_collections.items():
     for key_sub, value_sub in value.items():
         list_dict.append({key_sub: value_sub})
     db[key].insert_many(list_dict)
+
+del key; del value; del key_sub; del value_sub; del list_dict
+
+# - Read mongoDB - #
+
+
+# Close connection for best practice
+client.close()
